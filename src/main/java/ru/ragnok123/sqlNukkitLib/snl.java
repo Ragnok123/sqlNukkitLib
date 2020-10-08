@@ -5,7 +5,7 @@ import cn.nukkit.plugin.PluginBase;
 import ru.ragnok123.sqlNukkitLib.mysql.MySQLDatabase;
 import ru.ragnok123.sqlNukkitLib.sqlite3.SQLite3Database;
 
-public class snl extends PluginBase{
+public class snl{
 	
 	public static Database init(SQLType type, SQLConnectionInfo info) {
 		Database db = null;

@@ -17,6 +17,7 @@ public class MySQLDatabase extends Database {
 			Class.forName("com.mysql.jdbc.Driver");
 			this.connection = DriverManager.getConnection(this.connectInfo.getConnectionString());
 			this.connection.createStatement();
+			System.out.printf("[sqlNukkitLib] Connected to MySQL database");
 		} catch(SQLException sqle) {
 		
 		} catch (ClassNotFoundException ex) {

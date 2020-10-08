@@ -19,6 +19,7 @@ public class SQLite3Database extends Database {
 			Class.forName("org.sqlite.JDBC");
 			this.connection = DriverManager.getConnection(this.connectInfo.getConnectionString());
 			this.connection.createStatement();
+			System.out.printf("[sqlNukkitLib] Connected to SQLite3 DATABASE");
 		} catch(SQLException sqle) {
 		
 		} catch (ClassNotFoundException ex) {
