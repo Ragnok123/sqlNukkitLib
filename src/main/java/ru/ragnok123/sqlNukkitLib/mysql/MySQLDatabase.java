@@ -19,9 +19,9 @@ public class MySQLDatabase extends Database {
 			this.connection.createStatement();
 			System.out.printf("[sqlNukkitLib] Connected to MySQL database");
 		} catch(SQLException sqle) {
-		
+			System.out.printf("[sqlNukkitLib] Database not found: " + sqle.getErrorCode());
 		} catch (ClassNotFoundException ex) {
-			
+			System.out.printf("[sqlNukkitLib] Class not found");
 		}
 	}
 	
