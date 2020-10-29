@@ -34,6 +34,15 @@ public abstract class Database {
 		}
 	}
 	
+	public void query(String query) {
+		this.asyncQuery.execute(() -> {
+			try {
+				PreparedStatement statement = connection.prepareStatement(query);
+				statement.executeUpdate();
+				statement.close();
+			} catch(SQLException e) {}
+		});
+	}
 	
 	public void insert(final String table, final Pair[] pairs) {
 
