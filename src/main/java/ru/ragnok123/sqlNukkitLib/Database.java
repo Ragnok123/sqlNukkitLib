@@ -28,10 +28,12 @@ public abstract class Database {
 	public abstract void connect();
 	
 	public void close() {
-		try {
-			this.connection.close();
-		} catch (SQLException e) {
-		}
+		this.asyncQuery.execute(() -> {
+			try {
+				this.connection.close();
+			} catch (SQLException e) {
+			}
+		});
 	}
 	
 	public void query(String query) {

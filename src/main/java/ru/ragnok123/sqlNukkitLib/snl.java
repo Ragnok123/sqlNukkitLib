@@ -1,11 +1,9 @@
 package ru.ragnok123.sqlNukkitLib;
 
-import org.cloudburstmc.plugin.PluginBase;
+import org.cloudburstmc.server.plugin.PluginBase;
 
-public class snl extends PluginBase {
+public class snl extends PluginBase{
 	
 	public void onEnable() {
-		
 	}
-	
 }
