@@ -16,7 +16,7 @@ public class MySQLConnectionInfo implements SQLConnectionInfo{
 	
 	public MySQLConnectionInfo(String ip, String user, String password, String database, String port) {
 		this.ip = ip;
-		this.port = port;
+		this.user = user;
 		this.password = password;
 		this.database = database;
 		this.port = port;
