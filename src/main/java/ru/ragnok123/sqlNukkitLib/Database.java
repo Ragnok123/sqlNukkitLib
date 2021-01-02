@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
@@ -111,6 +112,7 @@ public abstract class Database {
 	        }
 		});
 	}
+
 	
 	public void update(final String table, String where, String selector, Pair[] pairs) {
 		this.asyncQuery.execute(() -> {
