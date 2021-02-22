@@ -13,6 +13,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 
+import ru.ragnok123.sqlNukkitLib.utils.OrderType;
 import ru.ragnok123.sqlNukkitLib.utils.Pair;
 
 public abstract class Database {
@@ -108,6 +109,36 @@ public abstract class Database {
             		} catch(Exception e) {}
 	            });
 	        }catch (SQLException ex){
+	            ex.printStackTrace();
+	        }
+		});
+	}
+	
+	public void selectTop(final String table, final String order, final int limit, final OrderType orderType, final Consumer<HashMap<Integer, HashMap<String, Object>>> callback) {
+		this.asyncQuery.execute(() -> {
+			try{
+				PreparedStatement statement = connection.prepareStatement("SELECT * FROM `"+table+"` ORDER BY cast("+order+" as unsigned) "+orderType.getType()+" LIMIT "+String.valueOf(limit));
+				ResultSet result = statement.executeQuery();
+				ResultSetMetaData md = result.getMetaData();
+				HashMap<Integer, HashMap<String, Object>> rowCount= new HashMap<Integer, HashMap<String, Object>>();
+				HashMap<String, Object> row = new HashMap<String, Object>();
+				int columns = md.getColumnCount();
+				int currentRow = 0;
+				while(result.next()) {
+					for(int i = 1; i  <= columns; i++) {
+						row.put(md.getColumnName(i), result.getObject(i));
+					}
+					rowCount.put(currentRow, row);
+					currentRow++;
+				}
+				statement.close();
+	            result.close();
+	            asyncQuery.execute(() -> {
+	            	try {
+	            		callback.accept(rowCount);
+            		} catch(Exception e) {}
+	            });
+			} catch (SQLException ex){
 	            ex.printStackTrace();
 	        }
 		});
