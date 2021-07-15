@@ -9,12 +9,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringJoiner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 
+import ru.ragnok123.sqlNukkitLib.utils.Column;
 import ru.ragnok123.sqlNukkitLib.utils.OrderType;
 import ru.ragnok123.sqlNukkitLib.utils.Pair;
+import ru.ragnok123.sqlNukkitLib.utils.TableCreator;
 
 public abstract class Database {
 	
@@ -45,6 +48,21 @@ public abstract class Database {
 				statement.executeUpdate();
 				statement.close();
 			} catch(SQLException e) {}
+		});
+	}
+	
+	public void createTable(TableCreator table) {
+		this.asyncQuery.execute(() -> {
+			StringJoiner columns = new StringJoiner(", ");
+			for(Column col : table.columns) {
+				columns.add(col.creationColumnString());
+			}
+			try {
+				PreparedStatement statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS `"+table.tableName+"` ("+columns.toString()+")");
+				statement.executeUpdate();
+				statement.close();
+			} catch (SQLException e) {}
+			
 		});
 	}
 	
