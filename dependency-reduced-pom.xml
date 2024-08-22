@@ -47,12 +47,16 @@
       <id>nukkitx-repo</id>
       <url>http://repo.nukkitx.com/main/</url>
     </repository>
+    <repository>
+      <id>repo-lanink-cn</id>
+      <url>https://repo.lanink.cn/repository/maven-public/</url>
+    </repository>
   </repositories>
   <dependencies>
     <dependency>
       <groupId>cn.nukkit</groupId>
-      <artifactId>nukkit</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <artifactId>Nukkit</artifactId>
+      <version>MOT-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>

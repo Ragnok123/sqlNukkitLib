@@ -1,5 +1,5 @@
 name: "sqlNukkitLib"
 main: "ru.ragnok123.sqlNukkitLib.snl"
 version: "1.0"
-api: 1.0.0
+api-version: 1.21
 author: "Ragnok123"

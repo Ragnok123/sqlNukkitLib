@@ -1,8 +1,8 @@
 package ru.ragnok123.sqlNukkitLib;
 
-import cn.nukkit.plugin.PluginBase;
+import org.bukkit.plugin.java.JavaPlugin;
 
-public class snl extends PluginBase {
+public class snl extends JavaPlugin {
 	
 	public void onEnable() {
 		
